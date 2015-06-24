@@ -20,23 +20,32 @@ module both( c ) {
 	translate( [ 0, 19+25, 0 ] ) led( c );
 } 
 
+module versiering() {
 both( "yellow" );
 translate( [ distance, 0, 0 ] ) both( "red" );
 translate( [ -distance, 0, 0 ] ) plug( "green" );
+}
 
-translate( [ -150 + 2*distance, -2*distance/3, -5 ] )
-	difference() { 
-		hull() { 
-			translate( [ 10, 10, 0 ] ) cylinder( r = 10, h = 5 );
-			translate( [ 150 - 10, 10, 0 ] ) cylinder( r = 10, h = 5 );
-			translate( [ 150 - 10, 100 - 10, 0 ] ) cylinder( r = 10, h = 5 );
-			translate( [ 10, 100 - 10, 0 ] ) cylinder( r = 10, h = 5 );
- 		}
-		hull() { 
-			translate( [ 10+flens, 10+flens, -.5 ] ) cylinder( r = 10, h = 6 );
-			translate( [ 150 - 10-flens, 10+flens, -.5 ] ) cylinder( r = 10, h = 6 );
-			translate( [ 150 - 10-flens, 100 - 10-flens, -.5 ] ) cylinder( r = 10, h = 6 );
-			translate( [ 10+flens, 100 - 10-flens, -.5 ] ) cylinder( r = 10, h = 6 );
- 		}
-	}
+*versiering();
 
+module paneel() {
+	translate( [ -150 + 2*distance, -2*distance/3, -5 ] )
+		difference() { 
+			hull() { 
+				translate( [ 10, 10, 0 ] ) cylinder( r = 10, h = 5 );
+				translate( [ 150 - 10, 10, 0 ] ) cylinder( r = 10, h = 5 );
+				translate( [ 150 - 10, 100 - 10, 0 ] ) cylinder( r = 10, h = 5 );
+				translate( [ 10, 100 - 10, 0 ] ) cylinder( r = 10, h = 5 );
+ 			}
+			hull() { 
+				translate( [ 10+flens, 10+flens, -.5 ] ) cylinder( r = 10, h = 6 );
+				translate( [ 150 - 10-flens, 10+flens, -.5 ] ) cylinder( r = 10, h = 6 );
+				translate( [ 150 - 10-flens, 100 - 10-flens, -.5 ] ) cylinder( r = 10, h = 6 );
+				translate( [ 10+flens, 100 - 10-flens, -.5 ] ) cylinder( r = 10, h = 6 );
+	 		}
+		}
+}
+
+projection( cut = true ) 
+	translate( [ 0, 0, 1 ] ) 
+		paneel();
